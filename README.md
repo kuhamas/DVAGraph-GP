@@ -1,9 +1,31 @@
 # DVAGraph-GP
-DVAGraph-GP: Improving Phenotypic Prediction by Non-linear Dimension Reduction and Complex Genomic Relationship Modeling
+DVAGraph-GP: Improving phenotypic prediction by multi-scale genomic compression and dynamic graph learning
 # Overview
-DVAGraph-GP (Dilated Convolution Variational Autoencoder Graph for Genomic Prediction) is a deep learning framework designed to enhance genomic prediction in plant breeding. It leverages a combination of dilated convolutions, variational autoencoders (VAE), and graph neural networks (GNN) to capture complex, non-linear relationships between genotype and phenotype data. This model is optimized for genomic selection tasks, particularly for datasets with a large number of features and limited sample sizes, overcoming challenges such as the "curse of dimensionality."
+DVAGraph‑GP is a deep learning framework for genomic prediction that simultaneously addresses two fundamental challenges:
 
-The model uses a consistent set across all traits, simplifying training and improving efficiency and scalability. Finally, our experiments were executed using the PyTorch library (version 2.4.1) on an Anaconda environment within a Windows 11 Home workstation. The workstation is burdened with an Intel Xeon Gold 6133 CPU, 32 GB RAM, and an NVIDIA GeForce RTX 4060 GPU with 8 GB VRAM, accelerated using CUDA 12.4. Python 3.8.20 was used, along with the required libraries of torchvision, torchaudio, numpy, pandas, and scikit-learn to train and test deep learning models successfully
+# 1 Multi‑scale genomic compression – preserving local‑to‑long‑range SNP patterns while reducing dimensionality.
+
+# 2 Complex interaction modeling – learning trait‑specific SNP interaction graphs directly from the data.
+
+# The model combines three modules:
+
+1- Dilated Convolutional Fusion Variational Autoencoder (DCF‑VAE) – compresses high‑dimensional SNP data using parallel dilated convolutions (dilation rates 2, 4, 6) without increasing parameters, and provides probabilistic regularization via KL divergence.
+
+2- Dynamic Adaptive Graph Spectral Convolution (DAGSC) – builds a dynamic graph over the latent features using an ELU‑softmax adjacency matrix, then applies Chebyshev spectral convolution (order 2) to capture local and global interactions.
+
+3- Global Pooling & Regression – aggregates graph‑enhanced features via global mean pooling and maps them to phenotype predictions through a fully connected layer.
+
+** The whole model is trained end‑to‑end with a composite loss: prediction (MSE) + reconstruction (MSE) + KL divergence.
+
+# Key Innovations
+*Multi‑scale dilated convolutions – capture local (d=2), intermediate (d=4) and long‑range (d=6) genomic patterns without increasing parameter count.
+
+*Dynamic adaptive graph learning – the graph adjacency matrix is learned from the latent features and updated during training, adapting to trait‑specific interactions.
+
+*Chebyshev spectral convolution – approximates spectral graph convolution without expensive eigendecomposition, enabling efficient propagation of information up to 2‑hop neighborhoods.
+
+*Unified hyperparameters – the same hyperparameter set works across all traits and datasets, eliminating trait‑specific tuning.
+
 
 # Requirements
 torch==2.4.1
