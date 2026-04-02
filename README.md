@@ -10,7 +10,7 @@ DVAGraph‑GP is a deep learning framework for genomic prediction that simultane
 
 2 Complex interaction modeling – learning trait‑specific SNP interaction graphs directly from the data.
 
- The model combines three modules:
+ # The model combines three modules:
 
 1- Dilated Convolutional Fusion Variational Autoencoder (DCF‑VAE) – compresses high‑dimensional SNP data using parallel dilated convolutions (dilation rates 2, 4, 6) without increasing parameters, and provides probabilistic regularization via KL divergence.
 
