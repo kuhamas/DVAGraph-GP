@@ -1,13 +1,16 @@
 # DVAGraph-GP
-DVAGraph-GP: Improving phenotypic prediction by multi-scale genomic compression and dynamic graph learning
+# DVAGraph-GP: Improving phenotypic prediction by multi-scale genomic compression and dynamic graph learning
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 # Overview
 DVAGraph‑GP is a deep learning framework for genomic prediction that simultaneously addresses two fundamental challenges:
 
-# 1 Multi‑scale genomic compression – preserving local‑to‑long‑range SNP patterns while reducing dimensionality.
+1 Multi‑scale genomic compression – preserving local‑to‑long‑range SNP patterns while reducing dimensionality.
 
-# 2 Complex interaction modeling – learning trait‑specific SNP interaction graphs directly from the data.
+2 Complex interaction modeling – learning trait‑specific SNP interaction graphs directly from the data.
 
-# The model combines three modules:
+ The model combines three modules:
 
 1- Dilated Convolutional Fusion Variational Autoencoder (DCF‑VAE) – compresses high‑dimensional SNP data using parallel dilated convolutions (dilation rates 2, 4, 6) without increasing parameters, and provides probabilistic regularization via KL divergence.
 
@@ -16,6 +19,7 @@ DVAGraph‑GP is a deep learning framework for genomic prediction that simultane
 3- Global Pooling & Regression – aggregates graph‑enhanced features via global mean pooling and maps them to phenotype predictions through a fully connected layer.
 
 ** The whole model is trained end‑to‑end with a composite loss: prediction (MSE) + reconstruction (MSE) + KL divergence.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # Key Innovations
 *Multi‑scale dilated convolutions – capture local (d=2), intermediate (d=4) and long‑range (d=6) genomic patterns without increasing parameter count.
@@ -25,7 +29,7 @@ DVAGraph‑GP is a deep learning framework for genomic prediction that simultane
 *Chebyshev spectral convolution – approximates spectral graph convolution without expensive eigendecomposition, enabling efficient propagation of information up to 2‑hop neighborhoods.
 
 *Unified hyperparameters – the same hyperparameter set works across all traits and datasets, eliminating trait‑specific tuning.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # Requirements
 torch==2.4.1
