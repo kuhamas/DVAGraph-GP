@@ -1,0 +1,225 @@
+{
+  "protocol_version": "groundnut_envwise_outer3x10_innerval_v1",
+  "dataset": "Groundnut",
+  "protocol_purpose": "One locked, model-independent genotype-level protocol reused across all four Groundnut environments, all three traits, DVAGraph-GP, and all benchmark methods.",
+  "genotype_file": "E:\\MoDel_1\\Model1\\data\\Groundnut_Markers.csv",
+  "genotype_file_sha256": "082fb4e21baa37280b25e1a838ca6ae752b5352e7e3b1da57d84d7154757b59d",
+  "sample_id_column": "Line",
+  "sample_column_excluded_from_model_input": true,
+  "n_samples": 318,
+  "n_markers": 8264,
+  "genotype_shape": "318x8264",
+  "marker_order_sha256": "dea1ffc4006ef69c4aa0c7f722a2dfcb15108575ae500300924dfe9e8c034259",
+  "sample_order_sha256": "0588dca19e711e2ebe69dfe52e59b527e52f83f2d1d8ea28f0be25c06b3e7aa2",
+  "marker_coding": "dosage_0_1_2",
+  "observed_marker_values": [
+    0.0,
+    1.0,
+    2.0
+  ],
+  "observed_marker_min": 0.0,
+  "observed_marker_max": 2.0,
+  "missing_marker_cells": 0,
+  "marker_names_count": 8264,
+  "outer_cv_protocol": "3 repeated shuffled 10-fold outer CV; seeds 42, 2024, and 2025",
+  "cv_split_strategy": "random shuffled KFold at individual-genotype level; not phenotype-stratified; not pedigree/family grouped",
+  "cv_seeds": [
+    42,
+    2024,
+    2025
+  ],
+  "n_outer_folds": 10,
+  "n_outer_evaluations_per_trait_per_environment": 30,
+  "environment_design": "four environments analyzed separately; identical genotype-level outer/inner split assignments reused across environments and traits",
+  "environments": {
+    "env1_ALIYARNAGAR_R15": {
+      "environment_label": "ALIYARNAGAR_R15",
+      "phenotype_file": "E:\\MoDel_1\\Model1\\data\\env1_ALIYARNAGAR_R15_Groundnut_Pheno.csv",
+      "phenotype_file_sha256": "9d69126f6525d5a97db61a0dc0c1088c424e602b304e5b20be456b8e81935c08",
+      "phenotype_sample_id_column": "Line",
+      "n_rows_file": 318,
+      "n_genotype_lines": 318,
+      "line_set_matches_genotype": true,
+      "source_row_order_matches_genotype": true,
+      "alignment_method": "exact Line-ID matching; phenotype values are reordered to genotype sample order by model runners",
+      "traits": {
+        "NPP": {
+          "phenotype_column": "NPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 14.672609329223633,
+          "sd": 5.1267409324646,
+          "minimum": 3.130000114440918,
+          "maximum": 34.54999923706055
+        },
+        "PYPP": {
+          "phenotype_column": "PYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 10.907358169555664,
+          "sd": 3.9105684757232666,
+          "minimum": 3.609999895095825,
+          "maximum": 29.030000686645508
+        },
+        "SYPP": {
+          "phenotype_column": "SYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 6.596728801727295,
+          "sd": 2.4293665885925293,
+          "minimum": 2.1500000953674316,
+          "maximum": 17.209999084472656
+        }
+      }
+    },
+    "env2_ICRISAT_PR15-16": {
+      "environment_label": "ICRISAT_PR15-16",
+      "phenotype_file": "E:\\MoDel_1\\Model1\\data\\env2_ICRISAT_PR15-16_Groundnut_Pheno.csv",
+      "phenotype_file_sha256": "903a7127d65905f5ec349740831ee212907a101a6b6c0d2a25470ce809c985fa",
+      "phenotype_sample_id_column": "Line",
+      "n_rows_file": 318,
+      "n_genotype_lines": 318,
+      "line_set_matches_genotype": true,
+      "source_row_order_matches_genotype": true,
+      "alignment_method": "exact Line-ID matching; phenotype values are reordered to genotype sample order by model runners",
+      "traits": {
+        "NPP": {
+          "phenotype_column": "NPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 10.469276428222656,
+          "sd": 4.338181972503662,
+          "minimum": 2.8499999046325684,
+          "maximum": 23.850000381469727
+        },
+        "PYPP": {
+          "phenotype_column": "PYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 6.661509037017822,
+          "sd": 2.8934988975524902,
+          "minimum": 1.940000057220459,
+          "maximum": 19.8700008392334
+        },
+        "SYPP": {
+          "phenotype_column": "SYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 3.9962260723114014,
+          "sd": 1.8830453157424927,
+          "minimum": 0.7400000095367432,
+          "maximum": 11.619999885559082
+        }
+      }
+    },
+    "env3_ICRISAT_R15": {
+      "environment_label": "ICRISAT_R15",
+      "phenotype_file": "E:\\MoDel_1\\Model1\\data\\env3_ICRISAT_R15_Groundnut_Pheno.csv",
+      "phenotype_file_sha256": "7e78226374a0cd5a501c55343d1ca73d0faa4de1ffd1622f44b5a5fb53664c17",
+      "phenotype_sample_id_column": "Line",
+      "n_rows_file": 318,
+      "n_genotype_lines": 318,
+      "line_set_matches_genotype": true,
+      "source_row_order_matches_genotype": true,
+      "alignment_method": "exact Line-ID matching; phenotype values are reordered to genotype sample order by model runners",
+      "traits": {
+        "NPP": {
+          "phenotype_column": "NPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 14.413113594055176,
+          "sd": 5.044317722320557,
+          "minimum": 4.059999942779541,
+          "maximum": 28.889999389648438
+        },
+        "PYPP": {
+          "phenotype_column": "PYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 10.185534477233887,
+          "sd": 3.8186795711517334,
+          "minimum": 2.5399999618530273,
+          "maximum": 21.09000015258789
+        },
+        "SYPP": {
+          "phenotype_column": "SYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 5.834843158721924,
+          "sd": 2.3532633781433105,
+          "minimum": 1.5399999618530273,
+          "maximum": 13.489999771118164
+        }
+      }
+    },
+    "env4_JALGOAN_R15": {
+      "environment_label": "JALGOAN_R15",
+      "phenotype_file": "E:\\MoDel_1\\Model1\\data\\env4_JALGOAN_R15_Groundnut_Pheno.csv",
+      "phenotype_file_sha256": "068194bb43a2bf16cd271eba3a74633a2104998a740fc022627daba86348ea97",
+      "phenotype_sample_id_column": "Line",
+      "n_rows_file": 318,
+      "n_genotype_lines": 318,
+      "line_set_matches_genotype": true,
+      "source_row_order_matches_genotype": true,
+      "alignment_method": "exact Line-ID matching; phenotype values are reordered to genotype sample order by model runners",
+      "traits": {
+        "NPP": {
+          "phenotype_column": "NPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 15.865157127380371,
+          "sd": 6.0567240715026855,
+          "minimum": 3.799999952316284,
+          "maximum": 35.099998474121094
+        },
+        "PYPP": {
+          "phenotype_column": "PYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 10.587043762207031,
+          "sd": 4.225767135620117,
+          "minimum": 2.0999999046325684,
+          "maximum": 23.899999618530273
+        },
+        "SYPP": {
+          "phenotype_column": "SYPP",
+          "n_aligned": 318,
+          "n_valid": 318,
+          "mean": 6.192767143249512,
+          "sd": 2.6798760890960693,
+          "minimum": 1.0199999809265137,
+          "maximum": 13.800000190734863
+        }
+      }
+    }
+  },
+  "traits": [
+    "NPP",
+    "PYPP",
+    "SYPP"
+  ],
+  "inner_validation_protocol": "first fold of a deterministic shuffled 10-fold split performed inside each outer-training partition",
+  "inner_seed_rule": "inner_seed = outer_cv_seed * 1000 + outer_fold",
+  "example_fold_sizes": {
+    "n_outer_train": 286,
+    "n_outer_test": 32,
+    "n_inner_train": 257,
+    "n_inner_validation": 29
+  },
+  "outer_split_path": "E:\\MoDel_1\\github\\protocol_splits\\groundnut\\outer_splits.csv",
+  "outer_split_file_sha256": "cd43b12be1d4c6bac569a63eeec1d77cdd946e9f9d75a4f3cc03646ced986b38",
+  "outer_split_fingerprint_sha256": "6d17c5fefe05adbc2d6ca0b946986bf0b315ffb9400b5eb097cd0b20d6abd4b6",
+  "inner_split_path": "E:\\MoDel_1\\github\\protocol_splits\\groundnut\\inner_splits.csv",
+  "inner_split_file_sha256": "bea11718e1da5b21a0d4cecb565d5fbc962bbb0e827bdd7d45891bead17138a9",
+  "inner_split_fingerprint_sha256": "59dcba1d49af693bd46d70ad99d89ff1bac936b61bd9c6649c2c74bac0b33ed7",
+  "all_protocol_audits_pass": true,
+  "n_audited_outer_folds": 30,
+  "required_model_runner_policy": {
+    "same_assignments": "Every final Groundnut model runner must read these exact outer_splits.csv and inner_splits.csv files.",
+    "environment_handling": "Each environment is modeled separately; model runners must reuse the same genotype-level fold assignments in every environment and trait analysis.",
+    "inner_stage": "Any data-dependent preprocessing used during model selection must be fitted using inner_train only and applied unchanged to inner_validation.",
+    "outer_refit_stage": "For final evaluation, preprocessing must be re-estimated using complete outer_train and applied unchanged to outer_test.",
+    "outer_test_isolation": "Outer-test phenotype values must not influence preprocessing, model selection, epoch selection, hyperparameter selection, or any other model-development decision.",
+    "no_independent_resplitting": "Final model runners must not generate replacement outer or inner split assignments."
+  }
+}
