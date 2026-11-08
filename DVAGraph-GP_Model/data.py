@@ -13,12 +13,6 @@ This module handles:
 IMPORTANT:
 The Wheat2000 data are already preprocessed.
 
-Therefore, this module does NOT perform:
-- Missing-value imputation.
-- Genotype transformation.
-- Phenotype standardization or scaling.
-- Feature selection.
-
 Original genotype and phenotype values are preserved.
 """
 
