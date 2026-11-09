@@ -1,37 +1,3 @@
-"""
-DVAGraph-GP: reusable training engine
-=====================================
-
-This module implements the model-fitting procedure independently of any one
-dataset. Dataset loading, preprocessing, sample alignment, and construction /
-fingerprinting of locked CV splits belong to data.py. Experiment-specific
-values are supplied through TrainingSettings (normally created from config.py).
-
-Approved model contract
------------------------
-The model is imported from model.py and is not redefined here.
-
-Training:
-    sampled latent Z
-    dynamic minibatch graph built by model.py
-    prediction + genotype reconstruction + KL objective
-
-Validation:
-    posterior means from the fitted inner-training partition
-    one frozen graph built from those inner-training means only
-    deterministic prediction on inner-validation samples
-    select epoch by minimum original-scale validation MAE
-
-Outer refit:
-    fresh model initialization
-    refit on the complete outer-training partition for the selected epoch count
-    one final graph built from outer-training posterior means only
-    deterministic prediction on the untouched outer-test partition
-
-No preprocessing, imputation, feature selection, phenotype scaling, graph EMA,
-or split generation is performed in this module.
-"""
-
 from __future__ import annotations
 
 import os
@@ -42,7 +8,6 @@ os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 import gc
 import logging
-import random
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -66,6 +31,12 @@ from model import (
     LAMBDA_KL as MODEL_LAMBDA_KL,
     DVAGraphGP,
     dvagraph_loss,
+)
+
+from utils import (
+    derive_stage_seeds,
+    make_torch_generator,
+    set_global_seed,
 )
 
 
@@ -363,27 +334,6 @@ def validate_model_contract() -> None:
 # 5. Reproducibility, loaders, and optimizer
 # ---------------------------------------------------------------------------
 
-def set_global_seed(seed: int, settings: TrainingSettings) -> None:
-    """Set Python, NumPy, CPU, and CUDA seeds for one training stage."""
-
-    seed = int(seed)
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
-
-    if hasattr(torch.backends, "cudnn"):
-        torch.backends.cudnn.benchmark = False
-        torch.backends.cudnn.deterministic = bool(settings.deterministic_torch)
-
-    torch.use_deterministic_algorithms(
-        bool(settings.deterministic_torch),
-        warn_only=True,
-    )
-
-
 def _validate_xy(
     X: np.ndarray,
     y: Optional[np.ndarray] = None,
@@ -440,8 +390,7 @@ def make_data_loader(
     X_array, y_array = _validate_xy(X, y, name="DataLoader")
     assert y_array is not None
 
-    generator = torch.Generator()
-    generator.manual_seed(int(seed))
+    generator = make_torch_generator(seed)
 
     dataset = TensorDataset(
         torch.from_numpy(X_array),
@@ -788,22 +737,6 @@ def validate_fold_collection(
 # ---------------------------------------------------------------------------
 # 9. Seed derivation and checkpointing
 # ---------------------------------------------------------------------------
-
-def derive_stage_seeds(
-    spec: FoldSpecLike,
-    settings: TrainingSettings,
-) -> Tuple[int, int]:
-    """Use the original runner's selection/refit seed convention by default."""
-
-    base = (
-        int(spec.cv_seed) * int(settings.cv_seed_multiplier)
-        + int(spec.fold) * int(settings.fold_seed_multiplier)
-    )
-    return (
-        int(base + settings.selection_seed_offset),
-        int(base + settings.refit_seed_offset),
-    )
-
 
 def _safe_name(value: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", str(value)).strip("_") or "unnamed"
